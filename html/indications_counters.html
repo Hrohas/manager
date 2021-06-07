@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style/style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="indications_counters main_padding">
+        <div class="main_panel_left">
+            <div class="fio_type margin-right_45px">
+                <span class="fio font__25">Добавление услуг и тарифов</span>
+            </div>
+        </div>
+        <div class="main_servises">
+            <a href="index.php?gardeneers_button_number=0"
+                class="main_servises_itm font__14 user_select main_active">Основное</a>
+            <a href="index.php?gardeneers_button_number=1" class="main_servises_itm font__14 user_select">Показания
+                счетчиков</a>
+        </div>
+        <div class="main_panel_left main_panel_button">
+            <div class="main_action active font__14">Провести и закрыть</div>
+            <div class="main_action font__14">Записать</div>
+            <div class="main_action font__14">Провести</div>
+            <div class="main_action font__14">Заполнить</div>
+        </div>
+        <div class="input_flex">
+            <div class="modal_action_down font__14 no_target">
+                <div class="modal_action_left no_target">
+                    <div class="modal_action_item font__14">Номер:</div>
+                </div>
+                <div class="modal_action_right no_target">
+                    <div class="modal_action_inp">
+                        <input class="input_without_block" type="text" name="tarif" style="margin-left: 54px;">
+                    </div>
+                </div>
+            </div>
+            <div class="modal_action_down font__14 no_target" style="margin-left: 8px;">
+                <div class="modal_action_left no_target">
+                    <div class="modal_action_item font__14 ">От:</div>
+                </div>
+                <div class="modal_action_right no_target">
+                    <div class="modal_action_inp">
+                        <input class="input_without_block" type="date" style="width: 124%;margin-left: 6px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal_action_down down font__14 no_target">
+            <div class="modal_action_left no_target">
+                <div class="modal_action_item font__14">Тип операции:</div>
+            </div>
+            <div class="modal_action_right no_target">
+                <div class="modal_action_inp">
+                    <input class="input_without_block" type="text" style="margin-left: 8px;"><i class="fa fa-arrow-down open_arrow no_target" aria-hidden="true" style="right: 1px;top: 3px;"></i>
+                </div>
+            </div>
+        </div>
+        <div class="parametrs">
+            <span class="font__25 user_select" style="padding: 10px 0 5px 0;display: inline-block;">Параметры формирования</span>
+            <div class="parametrs_form">
+                <div class="main_panel_left main_panel_button">
+                    <div class="main_action active font__14">Добавить</div>
+                    <div class="button_arrow">
+                        <div class="button_main_items arrow_one"><i class="fa fa-arrow-up" aria-hidden="true"></i>
+                        </div>
+                        <div class="button_main_items arrow_two"><i class="fa fa-arrow-down" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="main_action font__14">Найти</div>
+                    <div class="main_action font__14">Отменить поиск</div>
+                </div>
+                <div class="table_width">
+                    <div class="gardeneer_catd_action_grid_header">
+                        <div class="gardeneer_catd_action_grid_header_items user_select">№</div>
+                        <div class="gardeneer_catd_action_grid_header_items user_select">Номер
+                        </div>
+                        <div class="gardeneer_catd_action_grid_header_items user_select">
+                            <div style="padding:5px 0;border-bottom: 2px solid #c6c6c6;">Карточка садовода
+                            </div>
+                            <div style="padding-top: 5px;">Участок</div>
+                        </div>
+                        <div class="gardeneer_catd_action_grid_header_items user_select">Счетчики</div>
+                        <div class="gardeneer_catd_action_grid_header_items user_select">Виды показаний</div>
+                        <div class="gardeneer_catd_action_grid_header_items user_select">
+                            <div style="
+                                    display: flex;justify-content: space-around;border-bottom: 2px solid #c6c6c6;">
+                                <div
+                                    style="border-right: 2px solid #c6c6c6;padding-right: 10px;padding-top: 5px;padding-bottom: 5px;">
+                                    Началные показания</div>
+                                <div style="padding-top: 5px;padding-bottom: 5px;">Конечные показания</div>
+                            </div>
+                            <div style="padding: 5px 0px;">Количество</div>
+                        </div>
+                        <div class="gardeneer_catd_action_grid_header_items user_select">
+                            <div style="padding:5px 0;border-bottom: 2px solid #c6c6c6;">Дата начала показаний</div>
+                            <div style="padding-top: 5px;">Дата окончания</div>
+                        </div>
+                        <div class="gardeneer_catd_action_grid_header_items user_select">Дата последних показаний</div>
+                    </div>
+                    <div class="elem_form">
+                        <div class="gardeneer_catd_action_grid_action">
+                            <div class="gardeneer_catd_action_grid_action_itm font__14 user_select"></div>
+                            <div class="gardeneer_catd_action_grid_action_itm font__14 user_select">
+                            </div>
+                            <div class="gardeneer_catd_action_grid_action_itm font__14 user_select">
+                                <div style="padding:5px 0;border-bottom: 2px solid #c6c6c6;">Карточка садовода
+                                </div>
+                                <div style="padding-top: 5px;">Участок</div>
+                            </div>
+                            <div class="gardeneer_catd_action_grid_action_itm font__14 user_select">Счетчики</div>
+                            <div class="gardeneer_catd_action_grid_action_itm font__14 user_select">Виды показаний</div>
+                            <div class="gardeneer_catd_action_grid_action_itm font__14 user_select">
+                                <div style="
+                                    display: flex;justify-content: space-around;border-bottom: 2px solid #c6c6c6;">
+                                    <div
+                                        style="border-right: 2px solid #c6c6c6;padding-right: 10px;padding-top: 5px;padding-bottom: 5px;">
+                                        Началные показания</div>
+                                    <div style="padding-top: 5px;padding-bottom: 5px;">Конечные показания</div>
+                                </div>
+                                <div style="padding: 5px 0px;">Количество</div>
+                            </div>
+                            <div class="gardeneer_catd_action_grid_action_itm font__14 user_select">
+                                <div style="padding:5px 0;border-bottom: 2px solid #c6c6c6;">Дата начала показаний</div>
+                                <div style="padding-top: 5px;">Дата окончания</div>
+                            </div>
+                            <div class="gardeneer_catd_action_grid_action_itm font__14 user_select">Дата последних
+                                показаний</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="responsebl_comment">
+            <div class="responsebl_comment_item"><span>Коммент</span><input type="text" style="width: 84%;"></div>
+            <div class="responsebl_comment_item"><span>Ответственный</span><input type="text"></div>
+        </div>
+    </div>
+    <script src="https://use.fontawesome.com/17d2f0baf1.js"></script>
+</body>
+
+</html>

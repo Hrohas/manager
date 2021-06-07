@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>Документы</title>
+</head>
+
+<body>
+    <header>
+        <menu>
+            <ul class="menu font__14">
+                <li class="font__14 user_select">Начальная страница</li>
+                <li class="font__14 user_select">Карточки садовода</li>
+                <li class="font__14 user_select">Счетчики</li>
+                <li class="font__14 user_select">Документы</li>
+            </ul>
+        </menu>
+    </header>
+    <main>
+        <div class="nav_name_close_gardeneer">
+            <div class="left">
+                <div class="nav_gardeneer margin-right_45px">
+                    <div class="arrow">
+                        <i class="fa fa-arrow-left" aria-hidden="true"></i></div>
+                    <div class="arrow">
+                        <i class="fa fa-arrow-right" aria-hidden="true"></i></div>
+                </div>
+                <div class="favorites margin-right_45px">
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                </div>
+                <div class="fio_type margin-right_45px">
+                    <span class="fio font__25">Документы</span>
+                </div>
+            </div>
+            <div class="right">
+                <div class="close">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+        <div class="count_servises">
+            <a href="count.php?count_button_number=0" class="main_servises_itm font__14 user_select">Основное</a>
+            <a href="count.php?count_button_number=1" class="main_servises_itm font__14 user_select">Счета
+                покупателям</a>
+            <a href="count.php?count_button_number=2"
+                class="main_servises_itm font__14 user_select">Реализация(акты,накладные,УПД)</a>
+            <a href="count.php?count_button_number=3" class="main_servises_itm font__14 user_select">Платежные
+                поручения</a>
+            <a href="count.php?count_button_number=4" class="main_servises_itm font__14 user_select">Доверенности</a>
+            <a href="count.php?count_button_number=4" class="main_servises_itm font__14 user_select">Акты сверки
+                расчетов</a>
+            <a href="count.php?count_button_number=4" class="main_servises_itm font__14 user_select">Начисление
+                задолжности по финансированию</a>
+        </div>
+        <div class="payer_assignment documents_buyer">
+            <span class="forms_gardeenier_cart_text font__25">Платежные
+                поручения</span>
+            <form>
+                <div class="contragent font__14" style="position:relative;margin: 14px 0px;"><span>Дата</span><input
+                        type="checkbox" style="position:absolute;top:7px;margin-left:10px;">
+                    <input type="date" style="margin-left: 39px;">
+                    <select name="" id="" style="margin-left: 15px;padding: 3px;">
+                        <option value="">Контрагент</option>
+                    </select>
+                    <input type="checkbox" style="position:absolute;top:7px;margin-left:10px;">
+                    <input type="text" style="width: 45%;margin-left: 42px;border-color: #c7c7c7ad;padding:3px;">
+                    <div
+                        style="position:absolute;bottom: 2px;left: 951px;box-shadow: 0 0 2px #00000080;padding: 11px 11px;border-radius: 4px;">
+                        <i class="fa fa-arrow-down" aria-hidden="true"
+                            style="position:absolute;bottom: 6px;left: 8px;"></i></div>
+                </div>
+                <div class="button_main">
+                    <div class="button_main_left">
+                        <div class="button_main_items user_select font__14">Создать</div>
+                        <button class="button_main_items user_select font__14" disabled="true"><i class="fa fa-file-o"
+                                aria-hidden="true"></i></button>
+                        <div class="button_main_items user_select font__14"><i class="fa fa-envelope-o"
+                                aria-hidden="true"></i></div>
+                        <div class="button_main_items user_select font__14">Загрузить<i class="fa fa-arrow-down"
+                                aria-hidden="true"></i></div>
+                        <div class="button_main_items user_select font__14">Оплатить<i class="fa fa-arrow-down"
+                                aria-hidden="true"></i></div>
+                        <div class="button_main_items user_select font__14">Отправить в банк</div>
+                        <div class="button_main_items user_select font__14"><i class="fa fa-repeat"
+                                aria-hidden="true"></i></div>
+                        <div class="button_main_items user_select font__14"><i class="fa fa-print"
+                                aria-hidden="true"></i>Печать</div>
+                        <div class="button_main_items user_select font__14"><i class="fa fa-object-group"
+                                aria-hidden="true"></i></div>
+                        <div class="button_main_items user_select font__14"><i class="fa fa-paperclip"
+                                aria-hidden="true"></i></div>
+                    </div>
+                    <div class="button_main_rigt">
+                        <div class="seartch"><input type="user_select" name="">
+                            <div class="user_select"><i class="fa fa-times" aria-hidden="true"></i></div>
+                        </div>
+                        <div class="button_main_items user_select font__14"><i class="fa fa-search"
+                                aria-hidden="true"></i>
+                        </div>
+                        <div class="button_main_items user_select font__14">Ещё</div>
+                    </div>
+                </div>
+            </form>
+            <div class="table_form">
+                <div class="gardeneer_catd_action_grid_header">
+                    <div class="gardeneer_catd_action_grid_header_items font__14 user_select">Дата</div>
+                    <div class="gardeneer_catd_action_grid_header_items font__14 user_select">Номер</div>
+                    <div class="gardeneer_catd_action_grid_header_items font__14 user_select">Сумма</div>
+                    <div class="gardeneer_catd_action_grid_header_items font__14 user_select">Назначение платежа</div>
+                    <div class="gardeneer_catd_action_grid_header_items font__14 user_select">Получатель</div>
+                    <div class="gardeneer_catd_action_grid_header_items font__14 user_select">Состояние</div>
+                    <div class="gardeneer_catd_action_grid_header_items font__14 user_select">Вид операции</div>
+                </div>
+                <div class="gardeneer_catd_action_grid_action">
+                    <div class="gardeneer_catd_action_grid_action_itm font__14 user_select"><span
+                            class="gardeneer_catd_action_grid_action_itm_text"></span></div>
+                    <div class="gardeneer_catd_action_grid_action_itm font__14 user_select"><span
+                            class="gardeneer_catd_action_grid_action_itm_text"></span></div>
+                    <div class="gardeneer_catd_action_grid_action_itm font__14 user_select"><span
+                            class="gardeneer_catd_action_grid_action_itm_text"></span></div>
+                    <div class="gardeneer_catd_action_grid_action_itm font__14 user_select"><span
+                            class="gardeneer_catd_action_grid_action_itm_text"></span></div>
+                    <div class="gardeneer_catd_action_grid_action_itm font__14 user_select"><span
+                            class="gardeneer_catd_action_grid_action_itm_text"></span></div>
+                    <div class="gardeneer_catd_action_grid_action_itm font__14 user_select"><span
+                            class="gardeneer_catd_action_grid_action_itm_text"></span></div>
+                    <div class="gardeneer_catd_action_grid_action_itm font__14 user_select"><span
+                            class="gardeneer_catd_action_grid_action_itm_text"></span></div>
+                </div>
+            </div>
+        </div>
+        <script src="https://use.fontawesome.com/17d2f0baf1.js"></script>
+</body>
+
+</html>

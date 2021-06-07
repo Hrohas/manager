@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="modal_search modal_redactor">
+        <div class="modal_name_close">
+            <span class="moda_text font__25 no_target">Найти</span>
+            <div class="close_x"><i class="fa fa-times close_form no_target modal_save_close" aria-hidden="true"
+                    id="test"></i></div>
+        </div>
+        <div class="modal_action_down font__14 no_target">
+            <div class="modal_action_left no_target">
+                <div class="modal_action_item">Где искать:</div>
+                <div class="modal_action_item">Что искать:</div>
+            </div>
+            <div class="modal_action_right no_target">
+                <div class="modal_action_inp">
+                    <input type="text" class="modal_action_item no_target" name="tarif">
+                    <div class="many_point no_target">...</div>
+                    <div class="modal_action_inp_elem no_target modal_select_list" style="display: none;">
+                        <div class="modal_action_inp_item font__11 no_target"></div>
+                    </div>
+                </div>
+                <div class="modal_action_inp no_target no_target">
+                    <input type="date">
+                </div>
+            </div>
+        </div>
+        <div class="tupe_seartch">
+            <input type="radio" id="how_seartch" class="tupe_seartch_item" name="seartch">
+            <label for="how_seartch" class="font__14">Что искать</label>
+            <input type="radio" id="begin_str" class="tupe_seartch_item" name="seartch">
+            <label for="begin_str" class="font__14">По началу строки</label>
+            <input type="radio" id="half_str" class="tupe_seartch_item" name="seartch">
+            <label for="half_str" class="font__14">По части строки</label>
+            <input type="radio" id="exact_match" class="tupe_seartch_item" name="seartch">
+            <label for="exact_match" class="font__14">По точному совпадению</label>
+        </div>
+        <div class="down_button">
+            <div class="down_button_item active font__14">Найти</div>
+            <div class="down_button_item font__14">Закрыть</div>
+        </div>
+    </div>
+</body>
+
+</html>
