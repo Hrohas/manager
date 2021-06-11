@@ -154,7 +154,7 @@
                                 <div class="catd_action_item">
                                     <i class="fa fa-file" aria-hidden="true"></i>
                                 </div>
-                                <div class="catd_action_item">
+                                <div class="catd_action_item" data-status="search">
                                     <span class="font__14 user_select">Найти..</span>
                                 </div>
                                 <div class="catd_action_item">
@@ -198,7 +198,7 @@
                     <div class="gardeneer_catd_action_onebutton">
                         <div class="father_button">
                             <div class="button_left">
-                                <div class="catd_action_item">
+                                <div class="catd_action_item" data-status="search">
                                     <span class="font__14 user_select">Найти..</span>
                                 </div>
                                 <div class="catd_action_item">

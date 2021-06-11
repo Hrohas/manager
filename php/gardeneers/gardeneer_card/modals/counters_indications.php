@@ -118,7 +118,7 @@ echo'<div class="indications_counters">
                         <div class="button_main_items arrow_two"><i class="fa fa-arrow-down" aria-hidden="true"></i>
                         </div>
                     </div>
-                    <div class="main_action font__14">Найти</div>
+                    <div class="main_action font__14" data-status="search">Найти</div>
                     <div class="main_action font__14">Отменить поиск</div>
                 </div>
                 <div class="table_width">

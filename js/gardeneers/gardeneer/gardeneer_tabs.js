@@ -225,7 +225,7 @@ if (param.get('number') == '1') {
                 }, function (data) {
                     $('main').append($.parseHTML(data));
                 })
-                $(document).ajaxComplete(function(){
+                $(document).ajaxComplete(function () {
                     const service_create_modal = document.querySelector('.service_create_modal');
                     service_create_modal.addEventListener('mousedown', mousedown);
                     service_create_modal.addEventListener('mouseup', mouseup);
@@ -237,7 +237,7 @@ if (param.get('number') == '1') {
                     });
                     modal_functional();
                     modal_change_tabs()
-                });                
+                });
             }
             if ($('.create_modal').parents().eq(3).find('.fio').html() == 'Услуги и тарифы') {
                 $.post('/php/gardeneers/gardeneer_card/modals/modal_add_serviсe_tariff.php', {
@@ -245,7 +245,7 @@ if (param.get('number') == '1') {
                 }, function (data) {
                     $('main').append($.parseHTML(data));
                 });
-                $(document).ajaxComplete(function(){
+                $(document).ajaxComplete(function () {
                     const add_serviсe_tariff = document.querySelector('.add_serviсe_tariff');
                     add_serviсe_tariff.addEventListener('mousedown', mousedown);
                     add_serviсe_tariff.addEventListener('mouseup', mouseup);
@@ -256,7 +256,7 @@ if (param.get('number') == '1') {
                         'pointer-events': 'none'
                     });
                     modal_functional();
-                });                
+                });
             }
         });
     }
@@ -269,7 +269,7 @@ if (param.get('number') == '1') {
         }, data => {
             $('main').append($.parseHTML(data));
         })
-        $(document).ajaxComplete(function(){
+        $(document).ajaxComplete(function () {
             const modal_service = document.querySelector('.modal_service');
             $(modal_service).css({
                 'pointer-events': 'auto'
@@ -298,8 +298,8 @@ if (param.get('number') == '1') {
                 create_window_support.apply(elem, ['Услуги и тарифы', ['tariff_name', 'id_tariff', 'price', 'count_unit'],
                     ['Наименование', 'Код', 'Цена', 'Единица учета']
                 ]);
-                $(document).ajaxComplete(function(){
-                    $('.modal_service').addClass('servise_tarif');                    
+                $(document).ajaxComplete(function () {
+                    $('.modal_service').addClass('servise_tarif');
                 })
             });
         });
@@ -338,12 +338,12 @@ if (param.get('number') == '1') {
             elem.style.cssText = "pointer-events:auto;";
             modal_functional();
             modal_services();
-            $(elem).find('.modal_save_close').click(function(event) {
+            $(elem).find('.modal_save_close').click(function (event) {
                 event.stopImmediatePropagation();
                 add_accrual.apply(elem);
                 localStorage.removeItem('modal_create_accrual');
             });
-            $(elem).find('.modal_save').click(function(event) {
+            $(elem).find('.modal_save').click(function (event) {
                 event.stopImmediatePropagation();
                 localStorage.setItem('modal_create_accrual', '1');
                 add_accrual.apply(elem);
@@ -457,22 +457,37 @@ if (param.get('number') == '2') {
             })
         })
     })
-    if ($())
-        $('.indications_counters').click(() => {
-            const id_counter = $('.select_item_active').children().eq(1).html();
-            $.post('/php/gardeneers/gardeneer_card/modals/counters_indications.php', {
-                id_counter: id_counter
-            }, function (data) {
-                $('main').children().remove()
-                $('main').append($.parseHTML(data));
-                $(document).ajaxComplete(function () {
-                    $('html').css({
-                        "overflow": "auto"
-                    });
-                    $('.close_x').click(() => {
-                        location.href = location.href;
-                    })
+    $('.indications_counters').click(() => {
+        const id_counter = $('.select_item_active').children().eq(1).html();
+        $.post('/php/gardeneers/gardeneer_card/modals/counters_indications.php', {
+            id_counter: id_counter
+        }, function (data) {
+            $('main').children().remove()
+            $('main').append($.parseHTML(data));
+            $(document).ajaxComplete(function () {
+                $('html').css({
+                    "overflow": "auto"
                 });
-            })
+                $('.close_x').click(() => {
+                    location.href = location.href;
+                })
+            });
         })
+    })
 }
+
+$('div[data-status="search"]').click(function() {
+    const search_header = $(this).parents().eq(2).find('.gardeneer_catd_action_grid_header_items');
+    let header_list = [];
+    $.map(search_header, elem => {
+        header_list.push(elem.innerText);
+    });
+    $.post('/php/gardeneers/gardeneer_card/modals/modal_search.php', {
+        header_list: header_list
+    }, function(data) {
+        $('body').append($.parseHTML(data));
+        $(document).ajaxComplete(function() {
+            modal_functional();
+        });
+    });
+});

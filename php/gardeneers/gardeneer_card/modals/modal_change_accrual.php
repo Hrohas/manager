@@ -137,7 +137,7 @@ echo
             </div>
             <div class="modal_action_on modal_tab">
                 <div class="make_service_button">
-                    <div class="make_service_button_item">Найти</div>
+                    <div class="make_service_button_item" data-status="search">Найти</div>
                     <button class="make_service_button_item" disabled>Отменить поиск</button>
                 </div>
                 <div class="make_service_date_write">
