@@ -41,9 +41,9 @@ function modal_functional() {
                     inp_elem.forEach(elem => {
                         elem.style.display = "none";
                     })
-                    father_arrow.querySelector('.modal_select_list').style.display = "block";
+                    $(father_arrow).find('.modal_select_list').css({"display":"block"});
                 } else {
-                    father_arrow.querySelector('.modal_select_list').style.display = "none";
+                    $(father_arrow).find('.modal_select_list').css({"display":"none"});
                 }
             } else {
                 inp_elem.forEach(elem => {
@@ -52,7 +52,10 @@ function modal_functional() {
             }
             if (e.target.classList.contains('modal_action_inp_item')) {
                 const father_inp_item = e.target.parentNode.parentNode;
-                father_inp_item.querySelector('.modal_action_item').setAttribute('value', e.target.innerHTML);
+                if($(e.target).attr('data-indx')) {
+                    $(father_inp_item).find('.modal_action_item').attr('data-search', $(e.target).attr('data-indx'));
+                }
+                $(father_inp_item).find('.modal_action_item').attr('value', e.target.innerHTML);
             }
         });
 
@@ -482,6 +485,7 @@ $('div[data-status="search"]').click(function() {
     $.map(search_header, elem => {
         header_list.push(elem.innerText);
     });
+    console.log($(search_header).parent());
     $.post('/php/gardeneers/gardeneer_card/modals/modal_search.php', {
         header_list: header_list
     }, function(data) {

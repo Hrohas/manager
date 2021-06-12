@@ -1,7 +1,7 @@
 <?php
     $list_items = '';
-    foreach($_POST['header_list'] as $elem) {
-        $list_items .= '<div class="modal_action_inp_item font__11 no_target">'.$elem.'</div>';
+    foreach($_POST['header_list'] as $key => $elem) {
+        $list_items .= '<div class="modal_action_inp_item font__11 no_target" data-indx="'.$key.'">'.$elem.'</div>';
     }
     echo '
     <div class="modal_search modal_redactor" id="search">
@@ -29,7 +29,7 @@
         </div>
     </div>
     <div class="down_button">
-        <div class="down_button_item active font__14">Найти</div>
+        <div class="down_button_item active font__14" data-but="search">Найти</div>
         <div class="down_button_item close_form font__14">Закрыть</div>
     </div>
     </div>
