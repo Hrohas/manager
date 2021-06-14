@@ -17,14 +17,14 @@
         </div>
         <div class="modal_action_right no_target">
             <div class="modal_action_inp">
-                <input type="text" class="modal_action_item no_target" name="tarif">
+                <input type="text" class="modal_action_item no_target" name="search_param">
                 <i class="fa fa-arrow-down open_arrow" aria-hidden="true" style="right:0"></i>
                 <div class="modal_action_inp_elem no_target modal_select_list" style="display: none;">
                     '.$list_items.'
                 </div>
             </div>
             <div class="modal_action_inp no_target no_target">
-                <input type="text">
+                <input type="text" name="search_content">
             </div>
         </div>
     </div>

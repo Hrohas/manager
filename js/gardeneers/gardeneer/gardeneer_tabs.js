@@ -507,7 +507,7 @@ $('div[data-status="search"]').click(function () {
                 "pointer-events": "auto"
             });
             $('div[data-but="search"]').click(() => {
-                
+
             });
         });
     });
