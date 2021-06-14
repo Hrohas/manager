@@ -490,7 +490,7 @@ $('div[data-status="search"]').click(function () {
     $.map(search_header, elem => {
         header_list.push(elem.innerText);
     });
-    console.log($(search_header).parent());
+    console.log($(search_header).parent().next());
     $.post('/php/gardeneers/gardeneer_card/modals/modal_search.php', {
         header_list: header_list
     }, function (data) {
@@ -506,8 +506,23 @@ $('div[data-status="search"]').click(function () {
             $('#search').css({
                 "pointer-events": "auto"
             });
+            $(search).find('input').on('change', function() {
+                if($(this).val() != '') {
+                    $(this).css({"box-shadow": "0 0 2px #00000080", "border": "#524c4c7d"});
+                }
+            });
             $('div[data-but="search"]').click(() => {
-
+                if($('input[name="search_param"]').val() == '' || $('input[name="search_content"]').val() == '') {
+                    if($('input[name="search_param"]').val() == '') {
+                        $('input[name="search_param"]').css({"border":"2px solid red"});
+                    }
+                    if($('input[name="search_content"]').val() == '') {
+                        $('input[name="search_content"]').css({"border":"2px solid red"});
+                    }
+                }
+                else {
+                    const table_content = $(search_header).parent().next().find('.gardeneer_catd_action_grid_action');
+                }
             });
         });
     });
