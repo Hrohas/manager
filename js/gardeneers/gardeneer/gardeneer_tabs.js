@@ -41,9 +41,13 @@ function modal_functional() {
                     inp_elem.forEach(elem => {
                         elem.style.display = "none";
                     })
-                    $(father_arrow).find('.modal_select_list').css({"display":"block"});
+                    $(father_arrow).find('.modal_select_list').css({
+                        "display": "block"
+                    });
                 } else {
-                    $(father_arrow).find('.modal_select_list').css({"display":"none"});
+                    $(father_arrow).find('.modal_select_list').css({
+                        "display": "none"
+                    });
                 }
             } else {
                 inp_elem.forEach(elem => {
@@ -52,7 +56,7 @@ function modal_functional() {
             }
             if (e.target.classList.contains('modal_action_inp_item')) {
                 const father_inp_item = e.target.parentNode.parentNode;
-                if($(e.target).attr('data-indx')) {
+                if ($(e.target).attr('data-indx')) {
                     $(father_inp_item).find('.modal_action_item').attr('data-search', $(e.target).attr('data-indx'));
                 }
                 $(father_inp_item).find('.modal_action_item').attr('value', e.target.innerHTML);
@@ -108,6 +112,32 @@ if (param.get('number') == '3') {
     document.querySelectorAll('.calculations')[1].innerHTML = '= ' + sum_payment;
     document.querySelectorAll('.calculations')[2].innerHTML = '= ' + sum_final_balance;
 }
+
+function move(e) {
+    if (!e.target.classList.contains('no_target')) {
+        this.style.left = e.pageX - this.offsetWidth / 2 + 'px';
+        this.style.top = e.pageY - this.offsetHeight / 2 + 'px';
+    }
+}
+
+function mousedown(e) {
+    if (!e.target.classList.contains('no_target')) {
+        this.addEventListener('mousemove', move);
+    }
+    if (e.target.classList.contains('modal_save_close')) {
+        localStorage.setItem('accurals_close', '1');
+    }
+    if (e.target.classList.contains('modal_save') && e.target.parentElement.parentElement.parentElement.classList.contains('modal_redactor_close')) {
+        localStorage.setItem('accurals_close', '2');
+    }
+    if (e.target.classList.contains('modal_save') && e.target.parentElement.parentElement.parentElement.classList.contains('modal_change')) {
+        localStorage.setItem('modal_change', '1');
+    }
+}
+
+function mouseup() {
+    this.removeEventListener('mousemove', move);
+}
 // Работа с модальными окнами и всем контентом вкладки начисления
 if (param.get('number') == '1') {
     calculate_width_scroll();
@@ -116,31 +146,6 @@ if (param.get('number') == '1') {
     const accural_change_button = document.querySelector('.modal_change_button'); //кнопка изменить
     let del_elem = ''; //запись дата атрибута для отправки на сервер для удаления
     let del_elems = ''; //запись всех дата атрибута для отправки на сервер для удаления
-    function move(e) {
-        if (!e.target.classList.contains('no_target')) {
-            this.style.left = e.pageX - this.offsetWidth / 2 + 'px';
-            this.style.top = e.pageY - this.offsetHeight / 2 + 'px';
-        }
-    }
-
-    function mousedown(e) {
-        if (!e.target.classList.contains('no_target')) {
-            this.addEventListener('mousemove', move);
-        }
-        if (e.target.classList.contains('modal_save_close')) {
-            localStorage.setItem('accurals_close', '1');
-        }
-        if (e.target.classList.contains('modal_save') && e.target.parentElement.parentElement.parentElement.classList.contains('modal_redactor_close')) {
-            localStorage.setItem('accurals_close', '2');
-        }
-        if (e.target.classList.contains('modal_save') && e.target.parentElement.parentElement.parentElement.classList.contains('modal_change')) {
-            localStorage.setItem('modal_change', '1');
-        }
-    }
-
-    function mouseup() {
-        this.removeEventListener('mousemove', move);
-    }
 
     function modal_change_tabs() {
         const tabs = document.querySelectorAll('.make_service_main_button');
@@ -479,7 +484,7 @@ if (param.get('number') == '2') {
     })
 }
 
-$('div[data-status="search"]').click(function() {
+$('div[data-status="search"]').click(function () {
     const search_header = $(this).parents().eq(2).find('.gardeneer_catd_action_grid_header_items');
     let header_list = [];
     $.map(search_header, elem => {
@@ -488,10 +493,22 @@ $('div[data-status="search"]').click(function() {
     console.log($(search_header).parent());
     $.post('/php/gardeneers/gardeneer_card/modals/modal_search.php', {
         header_list: header_list
-    }, function(data) {
+    }, function (data) {
         $('body').append($.parseHTML(data));
-        $(document).ajaxComplete(function() {
+        $(document).ajaxComplete(function () {
+            const search = document.getElementById('search');
+            search.addEventListener('mousedown', mousedown);
+            search.addEventListener('mouseup', mouseup);
             modal_functional();
+            $('body').css({
+                "pointer-events": "none"
+            });
+            $('#search').css({
+                "pointer-events": "auto"
+            });
+            $('div[data-but="search"]').click(() => {
+                
+            });
         });
     });
 });
