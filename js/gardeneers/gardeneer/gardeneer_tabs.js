@@ -3,6 +3,16 @@ const intelligence_list_get = location.search;
 let param = new URLSearchParams(intelligence_list_get);
 let intelligence_list_get_int = 0;
 
+if (param.get('number') != null) {
+    intelligence_list_get_int = parseInt(param.get('number'));
+}
+intelligence_list.forEach(elem => {
+    if (elem.classList.contains('active')) {
+        elem.classList.remove('acrive');
+    }
+});
+intelligence_list[intelligence_list_get_int].classList.add('active');
+
 function modal_functional() {
     const inp_elem = document.querySelectorAll('.modal_select_list');
     $(document).keydown(e => {
@@ -76,42 +86,6 @@ function modal_functional() {
         })
     })
 }
-if (param.get('number') != null) {
-    intelligence_list_get_int = parseInt(param.get('number'));
-}
-intelligence_list.forEach(elem => {
-    if (elem.classList.contains('active')) {
-        elem.classList.remove('acrive');
-    }
-});
-intelligence_list[intelligence_list_get_int].classList.add('active');
-
-if (param.get('number') == '3') {
-    let sum_recalc = 0;
-    let sum_payment = 0;
-    let sum_final_balance = 0;
-
-    document.querySelectorAll('.count').forEach(elem => {
-        if (elem.children[4].innerHTML == '') {
-            elem.children[4], innerHTML = 0;
-        } else {
-            sum_recalc += parseInt(elem.children[4].innerHTML);
-        }
-        if (elem.children[5].innerHTML == '') {
-            elem.children[5].innerHTML = 0;
-        } else {
-            sum_payment += parseInt(elem.children[5].innerHTML);
-        }
-        if (elem.children[6].innerHTML == '') {
-            elem.children[6].innerHTML = 0;
-        } else {
-            sum_final_balance += parseInt(elem.children[6].innerHTML);
-        }
-    });
-    document.querySelectorAll('.calculations')[0].innerHTML = '= ' + sum_recalc;
-    document.querySelectorAll('.calculations')[1].innerHTML = '= ' + sum_payment;
-    document.querySelectorAll('.calculations')[2].innerHTML = '= ' + sum_final_balance;
-}
 
 function move(e) {
     if (!e.target.classList.contains('no_target')) {
@@ -138,6 +112,96 @@ function mousedown(e) {
 function mouseup() {
     this.removeEventListener('mousemove', move);
 }
+
+function search() {
+    //поиск по таблице
+    $('div[data-status="search"]').click(function () {
+        const search_header = $(this).parents().eq(2).find('.gardeneer_catd_action_grid_header_items');
+        let header_list = [];
+        $.map(search_header, elem => {
+            header_list.push(elem.innerText);
+        });
+        const this_button = $(this);
+        $.post('/php/gardeneers/gardeneer_card/modals/modal_search.php', {
+            header_list: header_list
+        }, function (data) {
+            if ($('main').children().last().hasClass('modal_redactor')) {
+                $('main').children().last().css({
+                    "pointer-events": "none"
+                });
+            } else {
+                $('body').css({
+                    "pointer-events": "none"
+                });
+            }
+            $('main').append($.parseHTML(data));
+            $(document).ajaxComplete(function () {
+                const search = document.getElementById('search');
+                search.addEventListener('mousedown', mousedown);
+                search.addEventListener('mouseup', mouseup);
+                modal_functional();
+                $('#search').css({
+                    "pointer-events": "auto"
+                });
+                $(search).find('input').on('change', function () {
+                    if ($(this).val() != '') {
+                        $(this).css({
+                            "box-shadow": "0 0 2px #00000080",
+                            "border": "#524c4c7d"
+                        });
+                    }
+                });
+                //механизм поиска
+                $('div[data-but="search"]').click(() => {
+                    if ($('input[name="search_param"]').val() == '' || $('input[name="search_content"]').val() == '') {
+                        if ($('input[name="search_param"]').val() == '') {
+                            $('input[name="search_param"]').css({
+                                "border": "2px solid red"
+                            });
+                        }
+                        if ($('input[name="search_content"]').val() == '') {
+                            $('input[name="search_content"]').css({
+                                "border": "2px solid red"
+                            });
+                        }
+                    } else {
+                        let search_flag = false;
+                        const table_content = $(search_header).parent().next().find('.gardeneer_catd_action_grid_action');
+                        const column_id = parseInt($('input[name="search_param"]').attr('data-search'));
+                        $.map(table_content, elem => {
+                            if (elem.children[column_id].innerText.search(new RegExp($('input[name="search_content"]').val(), 'i')) != -1) {
+                                search_flag = true;
+                                elem.classList.add('select_item_active');
+                            }
+                        });
+                        if (search_flag) {
+                            $('#search').remove();
+                            if ($('main').children().last().hasClass('modal_redactor')) {
+                                $('main').children().last().css({
+                                    "pointer-events": "auto"
+                                });
+                            } else {
+                                $('body').css({
+                                    "pointer-events": "auto"
+                                });
+                            }
+                            $(this_button).next().removeAttr('disabled');
+                        }
+                    }
+                });
+            });
+        });
+    });
+
+    $('button[data-status="cancel_search"]').click(function () {
+        const canceled = $(this).parents().eq(2).find('.select_item_active');
+        $.map(canceled, elem => {
+            elem.classList.remove('select_item_active');
+        });
+        $(this).attr('disabled', 'true');
+    });
+}
+search();
 // Работа с модальными окнами и всем контентом вкладки начисления
 if (param.get('number') == '1') {
     calculate_width_scroll();
@@ -430,6 +494,7 @@ if (param.get('number') == '1') {
             modal_functional();
             modal_change_tabs();
             create_accrual_functional();
+            search();
         });
     });
 
@@ -484,46 +549,29 @@ if (param.get('number') == '2') {
     })
 }
 
-$('div[data-status="search"]').click(function () {
-    const search_header = $(this).parents().eq(2).find('.gardeneer_catd_action_grid_header_items');
-    let header_list = [];
-    $.map(search_header, elem => {
-        header_list.push(elem.innerText);
+if (param.get('number') == '3') {
+    let sum_recalc = 0;
+    let sum_payment = 0;
+    let sum_final_balance = 0;
+
+    document.querySelectorAll('.count').forEach(elem => {
+        if (elem.children[4].innerHTML == '') {
+            elem.children[4], innerHTML = 0;
+        } else {
+            sum_recalc += parseInt(elem.children[4].innerHTML);
+        }
+        if (elem.children[5].innerHTML == '') {
+            elem.children[5].innerHTML = 0;
+        } else {
+            sum_payment += parseInt(elem.children[5].innerHTML);
+        }
+        if (elem.children[6].innerHTML == '') {
+            elem.children[6].innerHTML = 0;
+        } else {
+            sum_final_balance += parseInt(elem.children[6].innerHTML);
+        }
     });
-    console.log($(search_header).parent().next());
-    $.post('/php/gardeneers/gardeneer_card/modals/modal_search.php', {
-        header_list: header_list
-    }, function (data) {
-        $('body').append($.parseHTML(data));
-        $(document).ajaxComplete(function () {
-            const search = document.getElementById('search');
-            search.addEventListener('mousedown', mousedown);
-            search.addEventListener('mouseup', mouseup);
-            modal_functional();
-            $('body').css({
-                "pointer-events": "none"
-            });
-            $('#search').css({
-                "pointer-events": "auto"
-            });
-            $(search).find('input').on('change', function() {
-                if($(this).val() != '') {
-                    $(this).css({"box-shadow": "0 0 2px #00000080", "border": "#524c4c7d"});
-                }
-            });
-            $('div[data-but="search"]').click(() => {
-                if($('input[name="search_param"]').val() == '' || $('input[name="search_content"]').val() == '') {
-                    if($('input[name="search_param"]').val() == '') {
-                        $('input[name="search_param"]').css({"border":"2px solid red"});
-                    }
-                    if($('input[name="search_content"]').val() == '') {
-                        $('input[name="search_content"]').css({"border":"2px solid red"});
-                    }
-                }
-                else {
-                    const table_content = $(search_header).parent().next().find('.gardeneer_catd_action_grid_action');
-                }
-            });
-        });
-    });
-});
+    document.querySelectorAll('.calculations')[0].innerHTML = '= ' + sum_recalc;
+    document.querySelectorAll('.calculations')[1].innerHTML = '= ' + sum_payment;
+    document.querySelectorAll('.calculations')[2].innerHTML = '= ' + sum_final_balance;
+}

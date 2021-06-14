@@ -157,9 +157,7 @@
                                 <div class="catd_action_item" data-status="search">
                                     <span class="font__14 user_select">Найти..</span>
                                 </div>
-                                <div class="catd_action_item">
-                                    <span class="font__14 user_select"><button disabled="true">Отменить поиск</button> </span>
-                                </div>
+                                <button class="catd_action_item font__14 user_select" data-status="cancel_search" disabled="true">Отменить поиск</button>
                                 <div class="catd_action_item indications_counters">
                                     <span class="font__14 user_select indications_counters">Внести показания</span>
                                 </div>
@@ -201,9 +199,7 @@
                                 <div class="catd_action_item" data-status="search">
                                     <span class="font__14 user_select">Найти..</span>
                                 </div>
-                                <div class="catd_action_item">
-                                    <span class="font__14 user_select"><button disabled="true">Отменить поиск</button></span>
-                                </div>
+                                <button class="catd_action_item font__14 user_select" data-status="cancel_search" disabled="true">Отменить поиск</button>
                             </div>
                             <div class="button_rigt">
                                 <div class="catd_action_item">
